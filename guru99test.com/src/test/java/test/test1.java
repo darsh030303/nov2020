@@ -2,6 +2,7 @@ package test;
 
 import org.testng.annotations.Test;
 
+import pages.DeleteCustomer;
 import pages.Editcustomer;
 import pages.HomePage;
 import pages.Newcustomer;
@@ -24,7 +25,7 @@ public class test1
 	HomePage objHomepage;
 	Newcustomer objNewcustomer;
     Editcustomer objEditcustomer;
-	  
+	DeleteCustomer objDeletecustomer;  
 	
   @Test(priority=0)
   public void login() throws InterruptedException, IOException
@@ -32,7 +33,7 @@ public class test1
 	 
 	  objHomepage=new HomePage(driver);
 	  String homepagetitle=objHomepage.gethomepagetitle();
-	  System.out.println(homepagetitle);
+	  System.out.println("homepage title: "+homepagetitle);
 	 
 	  objHomepage.logintoguru99("mngr293992","epabAdE");
 	
@@ -61,7 +62,7 @@ public class test1
 	  objNewcustomer=new Newcustomer(driver);
 	  objNewcustomer.clicknewcustomerlink();
 	  String newcustomertitle=objNewcustomer.getnewcustomertitle();
-	  System.out.println("newcustomer title"+newcustomertitle);
+	  System.out.println("newcustomer title: "+newcustomertitle);
 	  Assert.assertTrue(newcustomertitle.contains("Guru99 Bank New Customer Entry Page"));
 	  System.out.println("test pass: newcustomer");
 	  
@@ -73,9 +74,21 @@ public class test1
 	  objEditcustomer=new Editcustomer(driver);
 	  objEditcustomer.clickeditcustomerlink();
 	  String editcustomertitle=objEditcustomer.geteditcustomertitle();
-	  System.out.println("editcustomer title"+editcustomertitle);
+	  System.out.println("editcustomer title: "+editcustomertitle);
 	  Assert.assertTrue(editcustomertitle.contains("Guru99 Bank Edit Customer Page"));
 	  System.out.println("test pass: editcustomer");
+	  
+  }
+  
+  @Test(priority=3,enabled=true)
+  public void deletecustomer()
+  {
+	  objDeletecustomer=new DeleteCustomer(driver);
+	  objDeletecustomer.clickdeletecustomerlink();
+	  String deletecustomertitle=objDeletecustomer.getdeletecustomertitle();
+	  System.out.println("deletecustomer title: "+deletecustomertitle);
+	  Assert.assertTrue(deletecustomertitle.contains("Guru99 Bank"));
+	  System.out.println("test pass: deletecustomer");
 	  
   }
   
